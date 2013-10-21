@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.ui.theme" value="simple" />
+
+	<package name="framework-default" extends="json-default"
+		namespace="/">
+		<interceptors>
+			<!-- <interceptor name="securityInterceptor" class="unknown.framework.support.action.SecurityInterceptor"></interceptor> -->
+			<interceptor-stack name="frameworkStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<!-- <interceptor-ref name="securityInterceptor"></interceptor-ref> -->
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="frameworkStack"></default-interceptor-ref>
+		<global-results>
+			<result name="json" type="json">
+				<param name="noCache">true</param>
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="contentType">text/html</param>
+			</result>
+			<!-- <result name="login" type="redirectAction">website/index!executeLogin.action 
+				</result> <result name="logout" type="redirectAction">website/index!executeLogout.action 
+				</result> -->
+		</global-results>
+	</package>
+</struts>
+
